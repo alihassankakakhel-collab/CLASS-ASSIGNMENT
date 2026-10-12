@@ -1,0 +1,114 @@
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+int main()
+{
+    const double TRIP_MULTIPLIER = 2.0; // Two-way trip conversion
+
+    int numParticipants;
+    int numBuses;
+    double oneWay;
+    double fuelEfficiency;
+    double fuelPrice;
+    double mealCost;
+    double contingencyPercentage;
+
+    cout << "==============================================" << endl;
+    cout << "    FIELD VISIT COST ESTIMATOR INPUT SYSTEM   " << endl;
+    cout << "==============================================" << endl;
+
+    cout << "Enter number of participants: ";
+    cin >> numParticipants;
+
+    cout << "Enter number of buses: ";
+    cin >> numBuses;
+
+    cout << "Enter one-way distance (km): ";
+    cin >> oneWay;
+
+    cout << "Enter fuel efficiency (km/litre): ";
+    cin >> fuelEfficiency;
+
+    cout << "Enter fuel price (Rs./litre): ";
+    cin >> fuelPrice;
+
+    cout << "Enter meal cost per participant (Rs.): ";
+    cin >> mealCost;
+
+    cout << "Enter contingency percentage (%): ";
+    cin >> contingencyPercentage;
+
+    // Calculations
+    double totalBusDistance =
+        TRIP_MULTIPLIER * oneWay * numBuses;
+
+    double fuelRequired =
+        totalBusDistance / fuelEfficiency;
+
+    double fuelCost =
+        fuelRequired * fuelPrice;
+
+    double totalMealCost =
+        numParticipants * mealCost;
+
+    double subtotal =
+        fuelCost + totalMealCost;
+
+    double contingencyAmount =
+        (subtotal * contingencyPercentage) / 100.0;
+
+    double grandTotal =
+        subtotal + contingencyAmount;
+
+    double costPerParticipant =
+        grandTotal / numParticipants;
+
+    // Display
+    cout << "\n==============================================" << endl;
+    cout << "      FIELD VISIT FINANCIAL ESTIMATE REPORT   " << endl;
+    cout << "==============================================" << endl;
+
+    cout << "Planning Summary:" << endl;
+    cout << "  Participants: " << numParticipants << endl;
+    cout << "  Buses Allocated: " << numBuses << endl;
+
+    cout << fixed << setprecision(2);
+
+    cout << "  Total Travel Distance: "
+         << totalBusDistance << " km" << endl;
+
+    cout << "  Fuel Required: "
+   		 << fuelRequired << " litres" << endl;
+
+    cout << "----------------------------------------------" << endl;
+
+    cout << "Cost Breakdown:" << endl;
+
+    cout << "  Fuel Cost:            Rs. "
+         << fuelCost << endl;
+
+    cout << "  Meal Cost:            Rs. "
+         << totalMealCost << endl;
+
+    cout << "  Subtotal:             Rs. "
+         << subtotal << endl;
+
+    cout << "  Contingency ("
+         << contingencyPercentage << "%): Rs. "
+         << contingencyAmount << endl;
+
+    cout << "----------------------------------------------" << endl;
+
+    cout << "FINANCIAL SUMMARY:" << endl;
+
+    cout << "  Grand Total Cost:     Rs. "
+         << grandTotal << endl;
+
+    cout << "  Cost Per Participant: Rs. "
+         << costPerParticipant << endl;
+
+    cout << "==============================================" << endl;
+
+    return 0;
+}
